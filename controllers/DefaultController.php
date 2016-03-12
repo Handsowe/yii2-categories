@@ -1,9 +1,17 @@
 <?php
-
-namespace app\vendor\yiimodules\categories\controllers;
+/*
+ * This file is part of the YiiModules.com
+ *
+ * (c) Yii2 modules open source project are hosted on <http://github.com/yiimodules/>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+ 
+namespace yiimodules\categories\controllers;
 
 use Yii;
-use app\vendor\yiimodules\categories\models\Categories;
+use yiimodules\categories\models\Categories;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

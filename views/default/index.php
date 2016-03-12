@@ -1,10 +1,18 @@
 <?php
-use app\vendor\yiimodules\categories\ModuleAsset;
+/*
+ * This file is part of the YiiModules.com
+ *
+ * (c) Yii2 modules open source project are hosted on <http://github.com/yiimodules/>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+use yiimodules\categories\ModuleAsset;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Tabs;
 use yii\widgets\ActiveForm;
-use app\vendor\yiimodules\categories\models\Categories;
+use yiimodules\categories\models\Categories;
 use yii\bootstrap\ButtonGroup;
 use yii\bootstrap\Button;
 
