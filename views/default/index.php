@@ -33,7 +33,10 @@ Yii::$app->getModule('categories')->assets = ModuleAsset::register($this);
 			<div class="clearfix">&nbsp;</div>
 
 		  <div id="yimd-categories-jstree">
-		  <?php echo Categories::createTreeList($parent_id=0,$model); ?>
+		  <?php
+		  $current_category = Yii::$app->request->getQueryParam('id');
+		  ?>
+		  <?php echo Categories::createTreeList($parent_id=NULL,$current_category); ?>
 		  </div>	
 	
 	</div>
@@ -50,10 +53,10 @@ Yii::$app->getModule('categories')->assets = ModuleAsset::register($this);
 					<div class="navbar-header">
 						<span class="navbar-brand">
 							<?php if($parentCategory): ?>
-							<?php echo Html::getAttributeValue($parentCategory,'name'); ?> - New Subcategory
+							<?php echo Categories::printEditPath(Html::getAttributeValue($parentCategory,'id')); ?> - New Subcategory
 							<?php else: ?>
 								<?php if($model->id!=""): ?>
-								<?php echo Html::getAttributeValue($model,'name'); ?> - Update category information
+								<?php echo Categories::printEditPath(Html::getAttributeValue($model,'id')); ?> - Update category information
 								<?php else: ?>
 								New Root Category
 								<?php endif; ?>

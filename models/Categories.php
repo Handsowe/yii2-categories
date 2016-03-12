@@ -144,24 +144,34 @@ class Categories extends \yii\db\ActiveRecord
         return false;
     }
 	
-	public static function createTreeList($parent_id,$model){
-		$categories = self::find()->where(['parent_id'=>$parent_id])->all();	
+	public static function createTreeList($parent_id,$current_category){
+		$categories = self::find()->where(['parent_id'=>$parent_id])->all();
+		$parent_id = Yii::$app->request->getQueryParam('parent_id');
 		$html = "";
 		$html .= "<ul>";
 		foreach($categories as $category){
 			$html .= "<li>";
-			$class = (($category->id==$model->id)) ? "jstree-clicked" : "";
+			$class = (($category->id==$parent_id) || ($category->id==$current_category)) ? "jstree-clicked" : "";
 			$url = Yii::$app->urlManager->createUrl(['categories','id'=>$category->id]);
 			$html .= "<a class=\"".$class."\" href=\"".$url."\">";
 			$html .= Html::getAttributeValue($category,'name');
 			$html .= "</a>";
 				$childCount = self::find()->where(['parent_id'=>$category->id])->count();
 				if($childCount>0){
-					$html .= self::createTreeList($category->id,$model);
+					$html .= self::createTreeList($category->id,$current_category);
 				}
 			$html .= "</li>";
 		}
 		$html .= "</ul>";
+		return $html;
+	}
+	
+	public static function printEditPath($categoryId,$html=""){
+		$category= self::find()->where(['id'=>$categoryId])->one();
+		if($category->parent_id!=NULL){
+			$html .= self::printEditPath($category->parent_id,$html);
+		}
+		$html .= "<a href=\"".Yii::$app->urlManager->createUrl(['/categories','id'=>$category->id])."\">".$category->name."</a> &nbsp;/ ";
 		return $html;
 	}
 	
