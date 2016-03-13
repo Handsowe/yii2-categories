@@ -49,8 +49,8 @@ $ http://localhost/YOUR-PROJECT-NAME/web/index.php?r=categories
 ## Get category list in frontend
 
 ```php
-// To list all the categories & subcategories in array
+// To list all the categories & sub categories in array response
 Yii::$app->getModule('categories')->getAll();
-// To list specific category with sub categories, here 4 is category i want to fetch.
+// To list specific category with sub categories in array response, here 4 is category Id I'm fetching.
 Yii::$app->getModule('categories')->getOne(4); 
 ```
