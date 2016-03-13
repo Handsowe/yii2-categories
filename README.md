@@ -13,7 +13,7 @@ Yii2-categories can be installed using composer. Run following command to downlo
 install Yii2-categories:
 
 ```bash
-composer require "yiimodules/categories:dev-master"
+composer require "yiimodules/yii2-categories:dev-master"
 ```
 
 ### 2. Configure
