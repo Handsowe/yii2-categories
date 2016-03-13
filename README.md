@@ -19,9 +19,11 @@ composer require "yiimodules/yii2-categories:dev-master"
 ### 2. Configure
 
 Add following lines to your main configuration file to access this module via web URL:
+> **NOTE:** Along with category module you also need to configure redactor Module which installed as dependency in category module as below.
 
 ```php
 'modules' => [
+	'redactor' => 'yii\redactor\RedactorModule',
     'categories' => [
         'class' => 'yiimodules\categories\Module',
     ],
