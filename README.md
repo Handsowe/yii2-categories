@@ -19,7 +19,7 @@ composer require "yiimodules/yii2-categories:1.0.*"
 ### 2. Configure
 
 Add following lines to your main configuration file to access this module via web URL:
-> **NOTE:** Along with category module you also need to configure redactor Module which installed as dependency in category module as below.
+> **NOTE:** Along with category module you also need to configure redactor Module which installed as dependency in category module as below to add wysiwyg editor in category description.
 
 ```php
 'modules' => [
