@@ -4,6 +4,7 @@
   "keywords": [
     "yii2","Category management","Categories"
   ],
+  "language": "PHP",
   "type": "yii2-extension",
   "homepage": "http://www.yiimodules.com",
   "license": "MIT",
