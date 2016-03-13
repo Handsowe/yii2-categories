@@ -45,3 +45,12 @@ $ php yii migrate/up --migrationPath=@vendor/yiimodules/yii2-categories/migratio
 ```bash
 $ http://localhost/YOUR-PROJECT-NAME/web/index.php?r=categories
 ```
+
+## Get category list in frontend
+
+```php
+// To list all the categories & subcategories in array
+Yii::$app->getModule('categories')->getAll();
+// To list specific category with sub categories, here 4 is category i want to fetch.
+Yii::$app->getModule('categories')->getOne(4); 
+```

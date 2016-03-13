@@ -43,6 +43,19 @@ class Categories extends \yii\db\ActiveRecord
     {
         return 'ymd_categories';
     }
+	
+	public function behaviors()
+	{
+		return [
+			'timestamp' => [
+				'class' => 'yii\behaviors\TimestampBehavior',
+				'attributes' => [
+					\yii\db\ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+					\yii\db\ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+				],
+			],
+		];
+	}	
 
     /**
      * @inheritdoc
@@ -77,7 +90,7 @@ class Categories extends \yii\db\ActiveRecord
             'meta_keywords' => 'Meta Keywords',
             'meta_description' => 'Meta Description',
             'position' => 'Position',
-            'is_active' => 'Is Active',
+            'is_active' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

@@ -35,8 +35,23 @@ use yii\widgets\DetailView;
 		'meta_title',
 		'meta_keywords',
 		'meta_description',
-		'is_active',
-		'created_at',
-		'updated_at',
+		[
+			'attribute'=>'is_active',
+			'value' => ($model->is_active==1) ? "Active" : "Inactive",
+			'format'=>'raw',
+		],
+		//'is_active',
+		[
+			'attribute'=>'created_at',
+			'value' => ($model->created_at!='') ? date('d M Y h:s') : "(not set)",
+			'format'=>'raw',
+		],
+		[
+			'attribute'=>'updated_at',
+			'value' => ($model->updated_at!='') ? date('d M Y h:s a') : "(not set)",
+			'format'=>'raw',
+		]
+		//'created_at',
+		//'updated_at',
 	],
 ]) ?>

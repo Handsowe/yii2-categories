@@ -9,8 +9,7 @@
  */
  
 namespace yiimodules\categories;
-
-
+use yii\helpers\Url;
 /**
  * categories module definition class
  */
@@ -37,6 +36,48 @@ class Module extends \yii\base\Module
             '@categories-assets' => __DIR__ . '/assets'
         ]);
         // custom initialization code goes here
-		
     }
+	
+	public function getAll($parent_id=NULL){
+		$data = models\Categories::find()->where(['parent_id'=>$parent_id])->all();
+		$arr = array();
+		foreach($data as $data){
+			$catData = $data->attributes;
+			$uploadThumbs = $this->uploadThumbs;
+			foreach($uploadThumbs as $thumbType=>$sizes){
+				if(empty($catData['image'])){
+					$catData['image_'.$thumbType] =  false;
+				} else{
+					$catData['image_'.$thumbType] =  Url::to($this->uploadUrl.'/'.$thumbType.'/'.$catData['image']);
+				}
+			}
+			$countChilds = models\Categories::find()->where(['parent_id'=>$data->id])->count();
+			if($countChilds>0){
+				$catData['sub_categories'] = $this->getAll($parent_id=$data->id);
+			}
+			$arr[] = $catData;
+		}
+		return $arr;
+	}
+	
+	public function getOne($category_id=Null){
+		$data = models\Categories::find()->where(['id'=>$category_id])->one();
+		if($data===null){ return false; }
+		$catData = $data->attributes;
+		$uploadThumbs = $this->uploadThumbs;
+		foreach($uploadThumbs as $thumbType=>$sizes){
+			if(empty($catData['image'])){
+				$catData['image_'.$thumbType] =  false;
+			} else{
+				$catData['image_'.$thumbType] =  Url::to($this->uploadUrl.'/'.$thumbType.'/'.$catData['image']);
+			}
+		}
+		$countChilds = models\Categories::find()->where(['parent_id'=>$data->id])->count();
+		if($countChilds>0){
+			$catData['sub_categories'] = $this->getAll($parent_id=$data->id);
+		}
+		$arr[] = $catData;
+		return $arr;
+	}
+	
 }

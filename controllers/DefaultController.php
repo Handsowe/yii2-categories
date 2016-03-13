@@ -46,8 +46,13 @@ class DefaultController extends Controller
         if ($model->load(Yii::$app->request->post())) {
 			$model->save();
 			$model->upload();
-			Yii::$app->getSession()->setFlash('success', 'Category information has been stored.');
-			return $this->redirect(['index']);
+			if($model->isNewRecord){
+				Yii::$app->getSession()->setFlash('success', 'Category information has been stored.');
+				return $this->redirect(['index']);
+			} else{
+				Yii::$app->getSession()->setFlash('success', 'Category information updated successfully.');
+				$this->refresh();
+			}
         } else {
             return $this->render('index', [
                 'model' => $model,

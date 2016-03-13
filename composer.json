@@ -2,8 +2,9 @@
   "name": "yiimodules/yii2-categories",
   "description": "Complete category management system",
   "keywords": [
-    "Category management","Categories"
+    "yii2","Category management","Categories"
   ],
+  "type": "yii2-extension",
   "homepage": "http://www.yiimodules.com",
   "license": "MIT",
   "authors": [
